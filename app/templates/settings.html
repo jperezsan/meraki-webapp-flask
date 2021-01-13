@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tabSubject }}{% endblock %}
+
+{% block page_content %}
+<form method="POST" enctype="multipart/form-data">
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Uplink loss and latency tolerances</h3>
+
+			<div class="form-group">
+				{{ form.loss_field.label }}
+				{{ form.loss_field(value=loss) }}
+				<small class="form-text text-muted">
+					Must be a number between 1 and 100.
+				</small>
+			</div>
+			<div class="form-group">
+				{{ form.latency_field.label }}
+				{{ form.latency_field(value=latency) }}
+				<small class="form-text text-muted">
+					In Milliseconds.
+				</small>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<h3>Company name and logo</h3>
+			<div class="form-group">
+				<b>{{ form.org_name.label }}:</b>
+				<label>{{org_name}}</label>
+			</div>
+			<div class="form-group">
+				{{ form.org_logo_file.label }}
+				{{ form.org_logo_file() }}	
+				<small class="form-text text-muted">
+					Must be a .jpg file
+				</small>			
+			</div>
+			<hr />
+			<h3>{{ form.org_select.label }}</h3>
+			<p><label class="text-danger">Important:</label> The organization Id is ultimately set using environment variables.</p>
+			<p><b>Changing the organization using this form will update the organization temporarily until the server resets or is updated</b></p>
+			<div class="form-group">
+				{{ form.org_select(class_="custom-select") }}
+			</div>
+		</div>
+	</div>
+	<div id="loading-animation-text" class="d-none">
+        <p class="pl-2">Loading... (May take a few minutes)</p>
+    </div>
+	<button onclick="ToggleLoadingAnimation()" type="submit" class="btn btn-success">Update settings</button>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container-fluid">
+        <h3>Disclaimer:</h3>
+        <p>Unauthorized access is prohibited.</p>
+        <p>All access is monitored and trespassers shall be prosecuted to the fullest extent of the law.</p>
+
+    {% if current_user.is_authenticated %}
+        <hr class="my-4">
+        <p>Choose an action from the navigation menu.</p>
+    {% endif %}
+    </div>
+
+</div>
+{% endblock %}
+
+

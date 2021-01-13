@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Network Summary{% endblock %}
+
+{% block page_content %}
+<h3>Instructions:</h3>
+<ul>
+    <li>Filter networks using a tag or name</li>
+    <li>Only networks which are in Spoke configuration will be selected</li>    
+</ul>
+<form action="/switchover" method="GET">
+    <label for="name">Network name</label>
+    <!-- <input type="text" class="form-control" id="name" name="name"> -->
+    {{ form.name_field(value=name) }}
+    <label for="tag">Tag</label>
+    <!-- <input type="text" class="form-control pb-3" id="tag" name="tag"> -->
+    {{ form.tag_field(value=tag) }}
+    <button type="submit" class="btn btn-primary">Filter networks</button>
+</form>
+{% if networks %}
+
+<h3>Network Summary</h3>
+<form action="/hubsummary" method="POST">
+    <div id="loading-animation" class="lds-ring d-none">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div id="loading-animation-text" class="d-none">
+        <p class="pl-2">Loading... (May take a few minutes)</p>
+    </div>
+    <button onclick="ToggleLoadingAnimation()" type="submit" class="btn btn-sm btn-success">Get selected networks
+        hubs</button>
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th><button type="button" onclick="SelectAllCheckboxes(this)" class="btn btn-sm btn-light">Select
+                        all</button></th>
+                <th>Name</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for network in networks %}
+            <tr>
+                <td><input class="checkbox" type="checkbox" name="network_checkbox" value="{{network.id}}" /></td>
+                <td>{{network.name}}</td>
+                <td>{{network.tags}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+{% endif %}
+{% endblock %}

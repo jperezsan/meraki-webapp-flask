@@ -1,0 +1,157 @@
+body {
+    font-family: 'Cisco';
+}
+
+/* Cisco font */
+@font-face {
+    font-family: 'Cisco';
+    src: url('../fonts/CiscoSansTTExtraLight.woff2') format('woff2') 
+}
+
+/* Sidebar background */
+.bg-meraki-gray {
+    background-color: #3D3E40;
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1em;
+    }
+}
+
+.input-group-text {
+    min-width: 90px;
+} 
+
+/* Loading animation */
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #6FB73A;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #6FB73A transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Meraki  */
+.btn-meraki-green {
+    color: #fff;
+    background-color: #6FB73A;
+    border-color: #6FB73A;
+}
+
+.badge-orange {
+    color: #212529;
+    background-color: #ff8b07;
+}
+
+.badge-meraki-green {
+    color: #fff;
+    background-color: #6FB73A;
+}
+
+.list-group-item {
+    background-color: transparent;
+    padding: .5rem;
+}
+
+.jumbotron {
+    padding: 0;
+}
+
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/templates/simple-sidebar)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+
+ #wrapper {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+min-height: 100vh;
+margin-left: -15rem;
+-webkit-transition: margin .25s ease-out;
+-moz-transition: margin .25s ease-out;
+-o-transition: margin .25s ease-out;
+transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+padding: 0.875rem 1.25rem;
+}
+
+#sidebar-wrapper .sidebar-heading img {
+  height: 36px;
+}
+
+#sidebar-wrapper .list-group {
+width: 15rem;
+}
+
+#sidebar-wrapper .list-group .list-group-item {
+  background-color: #3D3E40;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 0.05em;    
+  padding: 1em 1em;
+}
+
+#sidebar-wrapper .list-group .list-group-item:hover {
+  background-color: white;
+  color: #3D3E40;
+}
+
+#page-content-wrapper {
+min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+margin-left: 0;
+}
+
+@media (min-width: 768px) {
+#sidebar-wrapper {
+  margin-left: 0;
+}
+
+#page-content-wrapper {
+  min-width: 0;
+  width: 100%;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: -15rem;
+}
+
+}
+

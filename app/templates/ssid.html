@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tabSubject }}{% endblock %}
+
+{% block page_content %}
+<h3>Instructions:</h3>
+<ul>
+	<li>Make sure to select the correct Network</li>
+	<li>All fields are optional</li>
+	<li>Any fields left blank will remain unchanged</li>
+	<li>This form will only modify the network's <strong>first SSID</strong></li>
+    <li>If encryption mode is WPA, the PSK must have a minimum length of 8 characters</li>
+</ul>
+
+
+<div class="row">
+    <div class="col-md-7">
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Network Name:</label>
+                </div>
+                <div>
+                    {{ form.networkField(class_="custom-select") }}
+                    {% for error in form.networkField.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">SSID Name:</label>
+                </div>
+                {{ form.ssidname(size=20, maxlength = 14,class_="form-control form-control-sm") }}
+                {% for error in form.ssidname.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Enabled:</label>
+                </div>
+                {{ form.ssidenabled(class_="custom-select") }}
+                {% for error in form.ssidenabled.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Pre-Shared Key:</label>
+                </div>
+                {{ form.ssidpsk(size=20, maxlength = 14,class_="form-control form-control-sm") }}
+                {% for error in form.ssidpsk.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">IP Assignment Mode:</label>
+                </div>
+                {{ form.ssidipassignment(class_="custom-select") }}
+                {% for error in form.ssidipassignment.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">VLAN ID:</label>
+                </div>
+                {{ form.ssidvlanid(size=20, maxlength = 14,class_="form-control form-control-sm") }}
+                {% for error in form.ssidvlanid.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <br />
+            <div>{{ form.submitField(class_="btn btn-block btn-success mb-3") }}</div>
+        </form>
+    </div>
+</div>
+<div class="clear"></div>
+{% endblock %}

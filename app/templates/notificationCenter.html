@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tabSubject }}{% endblock %}
+
+{% block page_content %}
+<p>
+
+</p>
+<p>
+    The following list shows the 20 most recent notifications and changes from your organization
+</p>
+
+     
+<table class="table table-responsive table-striped">
+    <thead>
+        <tr>
+            <th class="table-success text-center align-middle">Date & Time</th>
+            <th class="table-success text-center align-middle">Network</th>
+            <th class="table-success text-center align-middle">Device Serial</th>
+            <th class="table-success text-center align-middle">Device Name</th>
+            <th class="table-success text-center align-middle">Alert Level</th>
+            <th class="table-success text-center align-middle">Alert Type</th>
+            <th class="table-success text-center align-middle">Reason</th>
+            <th class="table-success text-center align-middle">URL</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for notification in notifications|reverse %}
+        <tr>
+            <td class="table-light">{{notification.time}}</td>
+            <td class="table-light text-center">{{notification.networkName}}</td>
+            <td class="table-light text-center">{{notification.deviceSerial}}</td>
+            <td class="table-light text-center">{{notification.deviceName}}</td>
+            <td class="table-light text-center">{{notification.alertLevel}}</td>
+            <td class="table-light text-center">{{notification.alertType}}</td>
+            <td class="table-light text-center">{{notification.reason}}</td>
+            <td class="table-light text-center">
+                <a class="btn btn-meraki-green btn-sm" href={{notification.deviceUrl}} target="_blank"
+                   rel="noopener noreferrer"> View device</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    //setTimeout(function(){
+    //  location.reload(true);
+    //  alert("60 Seconds has passed! The page will now refresh");
+    //}, 60000);
+
+</script>
+
+{% endblock %}

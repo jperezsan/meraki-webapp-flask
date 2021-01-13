@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Users{% endblock %}
+
+{% block page_content %}
+
+{% if current_user.can(Permission.ADD_USERS) %}
+<a href="{{ url_for('auth.register') }}" class="btn btn-primary mb-3">Register user</a>
+{% endif %}
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr>
+        <th scope="row">{{user.full_name}}</th>
+        <td>{{user.email}}</td>
+        <td>{{user.role}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tabSubject }}{% endblock %}
+
+{% block page_content %}
+<h3>Instructions:</h3>
+<ul>
+    <li>Serial Numbers can be found on the box or on the bottom/back of the device</li>
+    <li>For best results with barcode scanner, set the scanner to add a "tab" suffix</li>
+    <li>The first Serial Number field is required. All others are optional</li>
+    <li>Serial Numbers must be in format "Q2XX-XXXX-XXXX"</li>
+    <li>To proceed click on the green Submit button at the end</li>
+</ul>
+
+<div class="row">
+    <div class="col-md-7">
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">New Network Name*:</label>
+                </div>
+                {{ form.networkTextField(class_="form-control") }}
+                {% for error in form.networkTextField.errors %}
+                    <small style="color: red;">[{{ error }}]</small>
+                {% endfor %}
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Template to bind to*:</label>
+                </div>
+                {{ form.templateField(class_="custom-select") }}
+                {% for error in form.templateField.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Street Address:</label>
+                </div>
+                {{ form.addressField(class_="form-control") }}
+                {% for error in form.addressField.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>Serial Number 1</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleSerialInput1" aria-describedby="serialInput"> -->
+                    </div>
+                    {{ form.serialField1(size=20, maxlength = 14, class_="form-control form-control-sm") }}
+                    {% for error in form.serialField1.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>Device Name</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleDeviceName1" aria-describedby="deviceInput"> -->
+                    </div>
+                    {{ form.nameField1(size=25, maxlength = 25, class="form-control form-control-sm") }}
+                    {% for error in form.nameField1.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>Serial Number 2</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleSerialInput1" aria-describedby="serialInput"> -->
+                    </div>
+                    {{ form.serialField2(size=20, maxlength = 14, class_="form-control form-control-sm") }}
+                    {% for error in form.serialField2.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>Device Name</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleDeviceName1" aria-describedby="deviceInput"> -->
+                    </div>
+                    {{ form.nameField2(size=25, maxlength = 25, class="form-control form-control-sm") }}
+                    {% for error in form.nameField2.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>Serial Number 3</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleSerialInput1" aria-describedby="serialInput"> -->
+                    </div>
+                    {{ form.serialField3(size=20, maxlength = 14, class_="form-control form-control-sm") }}
+                    {% for error in form.serialField3.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>Device Name</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleDeviceName1" aria-describedby="deviceInput"> -->
+                    </div>
+                    {{ form.nameField3(size=25, maxlength = 25, class="form-control form-control-sm") }}
+                    {% for error in form.nameField3.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>Serial Number 4</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleSerialInput1" aria-describedby="serialInput"> -->
+                    </div>
+                    {{ form.serialField4(size=20, maxlength = 14, class_="form-control form-control-sm") }}
+                    {% for error in form.serialField4.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>Device Name</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleDeviceName1" aria-describedby="deviceInput"> -->
+                    </div>
+                    {{ form.nameField4(size=25, maxlength = 25, class="form-control form-control-sm") }}
+                    {% for error in form.nameField4.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>Serial Number 5</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleSerialInput1" aria-describedby="serialInput"> -->
+                    </div>
+                    {{ form.serialField5(size=20, maxlength = 14, class_="form-control form-control-sm") }}
+                    {% for error in form.serialField5.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>Device Name</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleDeviceName1" aria-describedby="deviceInput"> -->
+                    </div>
+                    {{ form.nameField5(size=25, maxlength = 25, class="form-control form-control-sm") }}
+                    {% for error in form.nameField5.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>Serial Number 6</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleSerialInput1" aria-describedby="serialInput"> -->
+                    </div>
+                    {{ form.serialField6(size=20, maxlength = 14, class_="form-control form-control-sm") }}
+                    {% for error in form.serialField6.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>Device Name</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleDeviceName1" aria-describedby="deviceInput"> -->
+                    </div>
+                    {{ form.nameField6(size=25, maxlength = 25, class="form-control form-control-sm") }}
+                    {% for error in form.nameField6.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>Serial Number 7</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleSerialInput1" aria-describedby="serialInput"> -->
+                    </div>
+                    {{ form.serialField7(size=20, maxlength = 14, class_="form-control form-control-sm") }}
+                    {% for error in form.serialField7.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>Device Name</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleDeviceName1" aria-describedby="deviceInput"> -->
+                    </div>
+                    {{ form.nameField7(size=25, maxlength = 25, class="form-control form-control-sm") }}
+                    {% for error in form.nameField7.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>Serial Number 8</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleSerialInput1" aria-describedby="serialInput"> -->
+                    </div>
+                    {{ form.serialField8(size=20, maxlength = 14, class_="form-control form-control-sm") }}
+                    {% for error in form.serialField8.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>Device Name</label>
+                        <!-- <input type="text" class="form-control form-control-sm" id="exampleDeviceName1" aria-describedby="deviceInput"> -->
+                    </div>
+                    {{ form.nameField8(size=25, maxlength = 25, class="form-control form-control-sm") }}
+                    {% for error in form.nameField8.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+        <br />
+        <div>{{ form.submitField(class_="btn btn-block btn-success mb-3") }}</div>
+        </form>
+    </div>
+</div>
+<div class="clear"></div>
+{% endblock %}
+
+	
+

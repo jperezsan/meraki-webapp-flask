@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Map Monitoring{% endblock %}
+
+{% block page_content %}
+
+<div class="row">
+      <div class="col-md-6">
+            <div id="loading-animation" class="lds-ring">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+            </div>
+            <div id="loading-animation-text">
+                  <p class="pl-2">Loading...</p>
+            </div>
+            <div style="width: 100%; height: 480px" id="mapContainer"></div>
+            <div class="jumbotron jumbotron-fluid">
+                  <div class="container">                        
+                        <div class="row">
+                              <div class="col-md-9">
+                                    <ul class="list-group list-group-flush">
+                                          <li class="list-group-item">
+                                                <span style="width: 5em;" class="badge badge-pill badge-meraki-green">Green</span>
+                                                Everything OK
+                                          </li>
+                                          <li class="list-group-item">
+                                                <span style="width: 5em;" class="badge badge-pill badge-primary">Blue</span>
+                                                One or more uplinks failing 
+                                          </li>                     
+                                          <li class="list-group-item">
+                                                <span style="width: 5em;" class="badge badge-pill badge-warning">Yellow</span>
+                                                <b>Latency</b> above specified tolerance
+                                          </li>                     
+                                          <li class="list-group-item">
+                                                <span style="width: 5em;" class="badge badge-pill badge-orange">Orange</span>
+                                                <b>Packet loss</b> above specified tolerance
+                                          </li>                     
+                                          <li class="list-group-item">
+                                                <span style="width: 5em;" class="badge badge-pill badge-danger">Red</span>
+                                                <b>No WAN Connectivity</b>
+                                          </li>                              
+                                    </ul>  
+                              </div>
+                              <div class="col-md-3">
+                                    <button id="refresh-button" class="btn btn-block btn-light mt-2">Reload Map</button>
+                                    <a class="btn btn-block btn-secondary mt-2" href="/monitoring?filter=True">Only faulty networks</a>
+                                    <a class="btn btn-block btn-meraki-green mt-2" href="/monitoring">Show all networks</a>
+                              </div>
+                        </div>                                              
+                  </div>
+            </div>
+      </div>
+      <div class="col-md-6">
+            <div id="tablita"></div>
+
+            {% if current_user.can(Permission.APP_SETTINGS) %}
+            <div class="card">
+                  <div class="card-body">
+                        <p>You can change Latency and Loss percentage tolerances in the settings page</p>
+                        <a href="/appSettings" class="btn btn-secondary btn-block">
+                              Go to application settings
+                        </a>
+                  </div>
+            </div>
+            {% endif %}
+      </div>
+</div>
+{% endblock %}
+
+{% block head %}
+{{super()}}
+<!-- Here Maps API-->
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-clustering.js"></script>
+{% endblock %}
+
+{% block extrascripts %}
+<!-- Here mapsApi default code -->
+<script type="text/javascript" src="static/js/mapsApi.js"></script>
+
+<!-- Monitoring Script -->
+<script type="text/javascript" src="static/js/monitoring.js"></script>
+
+<!-- Websockets and Webhooks -->
+<script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+<script type="text/javascript" src="static/js/socketio.js"></script>
+
+{% endblock %}

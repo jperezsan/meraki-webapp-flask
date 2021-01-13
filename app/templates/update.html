@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tabSubject }}{% endblock %}
+
+{% block page_content %}
+<form method="POST" enctype="multipart/form-data">
+	<div class="row">		
+        <div class="col-md-4">            
+            <p>Are you sure you want to update this organization's data?</p>
+            <p><b>Updating may take a few minutes and you won't be able to use the application</b></p>
+            <div id="loading-animation" class="lds-ring d-none">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div id="loading-animation-text" class="d-none">
+                <p class="pl-2">Loading... (May take a few minutes)</p>
+            </div>
+            <button type="submit" onclick="ToggleLoadingAnimation()" class="btn btn-success">Update organization</button>
+        </div>        
+    </div>	
+</form>
+{% endblock %}

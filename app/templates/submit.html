@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tabSubject }}{% endblock %}
+
+{% block page_content %}
+<div id="content">
+	<hr />
+	{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <p><span style="color: green;">{{ message }}</span></p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+	<hr />
+  <form action="/addDevices" method="get">
+    <input class="btn btn-success" type="submit" value="Back" name="Home" id="frm1_submit" />
+  </form>
+</div>
+<div class="clear"></div>
+{% endblock %}

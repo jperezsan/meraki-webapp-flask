@@ -1,0 +1,114 @@
+<!-- NOT IMPLEMENTED -->
+<!-- NOT IMPLEMENTED -->
+<!-- NOT IMPLEMENTED -->
+
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Register User{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Register User</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        {{ wtf.quick_form(form,id="register") }}
+    </div>
+    <div class="col-md-6">
+        <h3>Role permissions</h3>
+        <table class="table table-sm table-bordered">
+            <thead>
+            <th></th>
+            <th scope="col">Field</th>
+            <th scope="col">View-only</th>
+            <th scope="col">Privileged</th>
+            <th scope="col">Administrator</th>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Add devices</th>
+                <td class="bg-success"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">Create network</th>
+                <td class="bg-success"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">Replace devices</th>
+                <td class="bg-success"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">Update SSID</th>
+                <td class="bg-success"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">Bulk change</th>
+                <td class="bg-danger"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">DC Switchover</th>
+                <td class="bg-danger"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">Map monitoring</th>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">Notification Center</th>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">List users</th>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">App settings</th>
+                <td class="bg-danger"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-success"></td>
+            </tr>
+            <tr>
+                <th scope="row">Add users</th>
+                <td class="bg-danger"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-danger"></td>
+                <td class="bg-success"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tabSubject }}{% endblock %}
+
+{% block page_content %}
+<h3>Instructions:</h3>
+<ul>
+	<li>Make sure to select the correct Network</li>
+	<li>Serial Numbers can be found on the box or on the bottom/back of the device</li>
+	<li>For best results with barcode scanner, set the scanner to add a "tab" suffix</li>
+	<li>Serial Numbers must be in format "Q2XX-XXXX-XXXX"</li>
+</ul>
+
+<div class="row">
+    <div class="col-md-7">
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Network Name:</label>
+                </div>
+                <div>
+                    {{ form.networkField(class_="custom-select") }}
+                    {% for error in form.networkField.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>MX to Replace</label>
+                    </div>
+                    {{ form.oldMX(size=20, maxlength = 14,class_="form-control form-control-sm") }}
+                    {% for error in form.oldMX.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>New MX:</label>
+                        {{ form.newMX(size=25, maxlength = 25,class_="form-control form-control-sm") }}
+                        {% for error in form.newMX.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>Switch to Replace</label>
+                        {{ form.oldSwitch(size=20, maxlength = 14,class_="form-control form-control-sm") }}
+                        {% for error in form.oldSwitch.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>New Switch</label>
+                        {{ form.newSwitch(size=25, maxlength = 25,class_="form-control form-control-sm") }}
+                        {% for error in form.newSwitch.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group mb-0">
+                        <label>AP to Replace</label>
+                        {{ form.oldAP(size=20, maxlength = 14,class_="form-control form-control-sm") }}
+                        {% for error in form.oldAP.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group mb-0">
+                        <label>New AP</label>
+                        {{ form.newAP(size=25, maxlength = 25,class_="form-control form-control-sm") }}
+                        {% for error in form.newAP.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>{{ form.submitField(class_="btn btn-block btn-success mb-3") }}</div>
+        </form>
+    </div>
+</div>
+<div class="clear"></div>
+{% endblock %}

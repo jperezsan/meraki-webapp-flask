@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tabSubject }}{% endblock %}
+
+{% block page_content %}
+<h3>Instructions:</h3>
+<ul>
+    <li>Make sure to select the correct Tag</li>
+    <li>All fields are optional</li>
+    <li>Any fields left unchecked will remain unchanged</li>
+</ul>
+
+<div class="row">
+    <div class="col-md-7">
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-row pb-3">
+                <label class="text-danger" for="inputGroupSelect01">Network Tag to Apply Changes to:</label>
+                {{ form.tagField(class_="custom-select") }}
+                {% for error in form.tagField.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <div class="form-check">
+                {{ form.setips(class_="form-check-input") }}
+                <label class="form-check-label" for="setips">
+                    IPS:
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Mode:</span>
+                        </div>
+                        {{ form.ipsmode(class_="custom-select") }}
+                        {% for error in form.ipsmode.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Rule Set:</span>
+                        </div>
+                        {{ form.ipsrules(class_="custom-select") }}
+                        {% for error in form.tagField.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+
+
+            <div class="form-check">
+                {{ form.set_content_filtering_url(class_="form-check-input") }}
+                <label class="form-check-label" for="setips">
+                    Content Filtering URL Rule:
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Section:</span>
+                        </div>
+                        {{ form.content_filtering_url_section(class_="custom-select") }}
+                        {% for error in form.content_filtering_url_section.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Action:</span>
+                        </div>
+                        {{ form.content_filtering_url_action(class_="custom-select") }}
+                        {% for error in form.content_filtering_url_action.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Rule Set:</span>
+                        </div>
+                        {{ form.content_filtering_url_list(class_="form-control") }}
+                        {% for error in form.tagField.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <p>(Enter one pattern per line)</p>
+                </div>
+            </div>
+            <hr>
+
+
+
+            <div class="form-check">
+                {{ form.setvpn(class_="form-check-input") }}
+                <label class="form-check-label" for="setips">
+                    VPN Hub Config:
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <p>Note: Choosing a site that is not a Hub will result in no changes being made.</p>
+                    <p>Not all sites in this list are currently configured as hubs.</p>
+                    <p>This tool will not modify the Local Networks included or excluded from VPN</p>
+                    <table class="table table-sm">
+                        <thead>
+                            <th>#</th>
+                            <th>Hub</th>
+                            <th>Default Route</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    {{ form.hub1(class_="custom-select") }}
+                                    {% for error in form.hub1.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        {{ form.default1(class_="form-check-input") }}
+                                    </div>                                                
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    {{ form.hub2(class_="custom-select") }}
+                                    {% for error in form.hub2.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        {{ form.default2(class_="form-check-input") }}
+                                    </div>                                                
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    {{ form.hub3(class_="custom-select") }}
+                                    {% for error in form.hub3.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <div class="form-check">
+                                        {{ form.default3(class_="form-check-input") }}
+                                    </div>                                                
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr>
+
+            <div class="form-check">
+                {{ form.setpsk(class_="form-check-input") }}
+                <label class="form-check-label" for="setips">
+                    Set Pre Shared Key:
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">SSID Number:</span>
+                        </div>
+                        {{ form.ssidnum(class_="custom-select") }}
+                        {% for error in form.ssidnum.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">PSK:</span>
+                        </div>
+                        {{ form.ssidpsk(class_="form-control") }}
+                        {% for error in form.ssidpsk.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>                    
+            <br />
+            <div>{{ form.submitField(class_="btn btn-block btn-success mb-3") }}</div>
+        </form>
+    </div>
+</div>
+<div class="clear"></div>
+{% endblock %}

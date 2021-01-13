@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tabSubject }}{% endblock %}
+
+{% block page_content %}
+<h3>Instructions:</h3>
+<ul>
+    <li>First, select the spokes where you want to make changes</li>
+    <li>If you select Swap Appliance VPN, the primary and first backup hubs will swap</li>
+    <li>Select from the dropdown list which hub you want your spokes to connect</li>
+    <li>Select Primary, Backup, Secondary Backup and Full Tunnel as you wish</li>
+</ul>
+
+<form action="/updateApplianceVPN" method="POST" class="pb-4">    
+    <div class="form-inline">
+        {% if networks %}
+        {{ form.hub_select.label }}:
+        {{ form.hub_select(class_="custom-select my-1 mr-sm-2") }}
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="hubType" id="primary" value="primary" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                Primary
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="hubType" id="backup" value="backup">
+            <label class="form-check-label" for="exampleRadios2">
+                Backup
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="hubType" id="backup2" value="backup2">
+            <label class="form-check-label" for="exampleRadios3">
+                Secondary Backup
+            </label>
+        </div>
+        <div class="form-group form-check">
+            <input class="checkbox" type="checkbox" name="full_tunnel" id="full_tunnel" value="True">
+            <label class="form-check-label" for="full_tunnel">
+                Full Tunnel
+            </label>
+        </div>        
+    </div>
+    
+    <div class="row pb-1">
+        <div class="col-md-4"><div class="card">
+            <div class="card-body">
+                <div id="loading-animation" class="lds-ring d-none">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="loading-animation-text" class="d-none">
+                    <p class="pl-2">Loading... (Updating networks)</p>
+                </div>
+                <div class="form-group">
+                    <button type="submit" onclick="ToggleLoadingAnimation()" class="btn btn-success btn-block" name="action"
+                        value="change">Change hub for selected networks</button>                    
+                    <button type="submit" onclick="ToggleLoadingAnimation()" class="btn btn-secondary btn-block" name="action"
+                        value="swap">Swap appliance VPN</button>
+                </div>        
+            </div>
+        </div></div>        
+    </div>    
+     
+    <table class="table table-responsive table-sm table-striped">
+        <thead>
+            <tr>
+                <th><button type="button" onclick="SelectAllCheckboxes(this)" class="btn btn-sm btn-light">Select
+                        all</button></th>
+                <th>Network Name</th>
+                <th class="bg-primary">Primary Name</th>
+                <th class="bg-primary">Primary Full Tunnel</th>
+                <th class="bg-info">Backup 1 Name</th>
+                <th class="bg-info">Backup 1 Full Tunnel</th>
+                <th class="bg-light">Backup 2 Name</th>
+                <th class="bg-light">Backup 2 Full Tunnel</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for network in networks %}
+            <tr>
+                <td><input class="checkbox" type="checkbox" name="network_checkbox" value="{{network.id}}" /></td>
+                <td>{{network.networkName}}</td>
+                <td class="table-primary">{{network.hubPriName}}</td>
+                <td class="table-primary">{{network.hubPriFullTunnel}}</td>
+                <td class="table-info">{{network.hubBkpName}}</td>
+                <td class="table-info">{{network.hubBkpFullTunnel}}</td>
+                <td class="table-light">{{network.hubBkp2Name}}</td>
+                <td class="table-light">{{network.hubBkp2FullTunnel}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No spokes found</p>
+    {% endif %}
+</form>
+{% endblock %}
