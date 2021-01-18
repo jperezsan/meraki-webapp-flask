@@ -2,11 +2,11 @@ import json
 
 from flask import request, Response, flash
 from flask_login import login_required
-from flask_socketio import emit
 
 from . import api
 
 from .. import helpers
+
 
 # Get organization information
 from .. import organization_data, dashboard_api_v0
@@ -83,6 +83,5 @@ def print_webhook_data():
     helpers.webhook_update_organization_data()
 
     print("NETWORK DATA UPDATED")
-    emit('data updated', 'Data updated', broadcast=True)
 
     return Response(status=200)

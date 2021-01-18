@@ -5,7 +5,6 @@ from . import dashboard_api_v0, dashboard_api_v1, organization_data
 
 
 def get_org_name(api_key, organization_id):
-    print(api_key, organization_id)
     organization = dashboard_api_v0.getorg(api_key, organization_id)
     return organization.get('name')
 

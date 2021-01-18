@@ -2302,7 +2302,6 @@ def getorg(apikey, orgid, suppressprint=False):
     # Call return handler function to parse Dashboard response
     #
     result = __returnhandler(dashboard.status_code, dashboard.text, calltype, suppressprint)
-    print(result)
     return result
 
 
