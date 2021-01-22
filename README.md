@@ -8,8 +8,8 @@ The development of the web app combines different documents, which are organized
   * **.env:** Stores the API keys for Meraki Dashboard and HERE Maps. This file also defines the organization number.
   * **flaskapp.py:** The main python function of the program.
   * **flaskapp.wgsi:** Used for deployment on production server. 
-  * **merakiapi.py:** Python methods used to get and set data into the Meraki Dashboard. Methods in this file use the Meraki API v0.
-  * **merakiapiV1.py:** Python methods used to get and set data into the Meraki Dashboard. Methods in this file use the Meraki API v1.
+  * **meraki_api_V0.py:** Python methods used to get and set data into the Meraki Dashboard. Methods in this file use the Meraki API v0.
+  * **meraki_api_V1.py:** Python methods used to get and set data into the Meraki Dashboard. Methods in this file use the Meraki API v1.
 ###### A note on HTML Files
 For simplicity, HTML files use inheritance. The base template defines the sidebar and other items that remain the same accross all pages. The other HTML files within the templates folder extend the base file, and therefore redefine the body of the HTML.
 
@@ -56,13 +56,22 @@ The following list ilustrates how to run the code locally.
     pip install -r requirenments.txt 
     ```
 4. Create the following environment variables:
-  * It is important not to hardcode the api keys directly in flaskapp.py
+  * It is important not to hardcode the api keys directly in any source file
 
     Name | Description
     ----------------|----------------------------
     MERAKI_API_KEY | API key used to access the Dashboard 
     MERAKI_ORG_ID | Organization ID  
-    HERE_MAPS_API_KEY | API key issued from the HERE MAPS developer account 
+    HERE_MAPS_API_KEY | API key issued from the HERE MAPS developer account
+    LOGO_URL | Organization logo path
+    ADMIN_MAIL | Default admin email
+    ADMIN_PASSWORD | Default admin password  
+    ADMIN_NAME | Default admin name
+    
+    Optional (For using an external database, e.g. MySQL)
+    *You may need to install mysqlclient on the linux development environment See: https://pypi.org/project/mysqlclient/
+    FLASK_CONFIG = "production"
+    DATABASE_URL = "mysql://{master username}:{db password}@{endpoint}/{db instance name}"
 
     Using powershell
     ```powershell
