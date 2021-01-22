@@ -70,8 +70,10 @@ The following list ilustrates how to run the code locally.
     
     Optional (For using an external database, e.g. MySQL)
     *You may need to install mysqlclient on the linux development environment See: https://pypi.org/project/mysqlclient/
-    FLASK_CONFIG = "production"
-    DATABASE_URL = "mysql://{master username}:{db password}@{endpoint}/{db instance name}"
+    Name | Description
+    ----------------|----------------------------
+    FLASK_CONFIG | "production"
+    DATABASE_URL | "mysql://{master username}:{db password}@{endpoint}/{db instance name}"
 
     Using powershell
     ```powershell
