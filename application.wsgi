@@ -18,4 +18,4 @@ if os.path.exists(dotenv_path):
 import sys
 sys.path.insert(0, '/var/www/html/flaskapp')
 
-from flaskapp import app as application
+from application import app as application

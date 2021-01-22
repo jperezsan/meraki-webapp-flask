@@ -137,10 +137,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
 
 # SQLite
 data-dev.sqlite
@@ -150,3 +146,8 @@ data-dev.sqlite
 
 # PyCharm
 .idea
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
