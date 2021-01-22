@@ -3,9 +3,9 @@ This project builds on top of previous developments made by Shiyue Chen. The ori
 
 ## Internal Structure and File Organization
 The web application structure is based on a clean architecture template based on the Flask Web Development 2nd edition book by Miguel Grinberg:
+* **.env:** Stores the API keys for Meraki Dashboard and HERE Maps. This file also defines the organization number.
   * **Static:** Contains static files like the CSS, JavaScript, images, fonts and logos. (HERE Maps integration relies heavily on javascript, jquery and ajax)
-  * **Templates:** Contains the HTML files for every page of the app.
-  * **.env:** Stores the API keys for Meraki Dashboard and HERE Maps. This file also defines the organization number.
+  * **Templates:** Contains the HTML files for every page of the app. 
   * **API/endpoints.py:** Endpoints for the API and webhooks
   * **flaskapp.py:** The main python function of the program.
   * **flaskapp.wgsi:** Used for deployment on production server. 
