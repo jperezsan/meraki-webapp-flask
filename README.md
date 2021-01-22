@@ -60,6 +60,7 @@ The following list ilustrates how to run the code locally.
 
     Name | Description
     ----------------|----------------------------
+    SECRET_KEY | Hard to guess string (for Flask)
     MERAKI_API_KEY | API key used to access the Dashboard 
     MERAKI_ORG_ID | Organization ID  
     HERE_MAPS_API_KEY | API key issued from the HERE MAPS developer account
@@ -92,9 +93,14 @@ The following list ilustrates how to run the code locally.
     
     .env contents:
     ```sh
+    SECRET_KEY="SuperSecureSecretKeyForFlask"
     MERAKI_API_KEY=”xxxxxxxxxxxxxxxxxxxxxxxxxxxx”
     MERAKI_ORG_ID=”xxxxxxx”
     HERE_MAPS_API_KEY=”xxxxxxxxxxxxxxxxxxxxxxxxxx”
+    LOGO_URL="https://www.xxxxxxxxx.com/xxxxxxx.png"
+    ADMIN_MAIL="admin@xxxxx.com"
+    ADMIN_PASSWORD="UltraSuperSecurePassword"    
+    ADMIN_NAME="Mr. Admin"    
     ```
   
   5. Create FLASK_APP environment variable
@@ -115,7 +121,18 @@ The following list ilustrates how to run the code locally.
       ```
 
       The application will run most likely on http://localhost:5000
-
+      
+  7. Create the database
+      ```sh
+      flask shell
+      ```
+      
+      ```python
+      db.create_all()
+      Role.insert_roles()
+      User.insert_admin_user()
+      exit()
+      ```
 
 
 ## DC Switchover Module
