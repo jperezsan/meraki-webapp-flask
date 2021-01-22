@@ -2,14 +2,15 @@
 This project builds on top of previous developments made by Shiyue Chen. The original web app can be found at https://github.com/shiyuechengineer/meraki-api-demo/tree/master/web_ui. In general terms, this new version includes a new look, as well as the addition of two new functionalities: DC Switchover and Map Monitoring.
 
 ## Internal Structure and File Organization
-The development of the web app combines different documents, which are organized as follows:
-  * **Static:** Contains static files like the CSS, JavaScript, images, fonts and logos.
+The web application structure is based on a clean architecture template based on the Flask Web Development 2nd edition book by Miguel Grinberg:
+  * **Static:** Contains static files like the CSS, JavaScript, images, fonts and logos. (HERE Maps integration relys heavily on javascript, jquery and ajax)
   * **Templates:** Contains the HTML files for every page of the app.
   * **.env:** Stores the API keys for Meraki Dashboard and HERE Maps. This file also defines the organization number.
   * **flaskapp.py:** The main python function of the program.
   * **flaskapp.wgsi:** Used for deployment on production server. 
   * **meraki_api_V0.py:** Python methods used to get and set data into the Meraki Dashboard. Methods in this file use the Meraki API v0.
   * **meraki_api_V1.py:** Python methods used to get and set data into the Meraki Dashboard. Methods in this file use the Meraki API v1.
+  * **organization_data.py:** All the organization data (networks, hubs, etc) is represented using global variables and accessed through this file.
 ###### A note on HTML Files
 For simplicity, HTML files use inheritance. The base template defines the sidebar and other items that remain the same accross all pages. The other HTML files within the templates folder extend the base file, and therefore redefine the body of the HTML.
 
@@ -113,16 +114,9 @@ The following list ilustrates how to run the code locally.
       Linux:
       ```bash
       export FLASK_APP=”flaskapp.py”
-      ```
-
-  6. Run de application on localhost (Only for development)
-      ```sh
-      flask run
-      ```
-
-      The application will run most likely on http://localhost:5000
+      ``` 
       
-  7. Create the database
+  6. Create the database
       ```sh
       flask shell
       ```
@@ -133,6 +127,13 @@ The following list ilustrates how to run the code locally.
       User.insert_admin_user()
       exit()
       ```
+      
+  7. Run de application on localhost (Only for development)
+      ```sh
+      flask run
+      ```
+
+      The application will run most likely on http://localhost:5000
 
 
 ## DC Switchover Module
