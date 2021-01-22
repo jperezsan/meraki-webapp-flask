@@ -28,7 +28,7 @@ After wirting the information required and uploading the company logo, it is nec
 ## How to run:
 The following list ilustrates how to run the code locally.
 
-1. Clone git repository https://github.com/jperezsan/meraki-sdwan-extended-automation (Collaborator permissions might be needed)
+1. Clone this repository https://github.com/jperezsan/meraki-webapp-flask
 2. Create a virtual environment and activate it
     * Create virtual environment with venv
       ```sh
