@@ -22,6 +22,8 @@
         <th scope="row">{{user.full_name}}</th>
         <td>{{user.email}}</td>
         <td>{{user.role}}</td>
+        <td><a href="/auth/changeUserRole?userid={{user.id}}" class="btn btn-sm btn-info">Change Role</a></td>
+        <td><a href="/auth/deleteUser?userid={{user.id}}" class="btn btn-sm btn-danger">Delete</a></td>
     </tr>
     {% endfor %}
     </tbody>

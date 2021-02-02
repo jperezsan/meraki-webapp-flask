@@ -6,7 +6,7 @@ from .. import db
 from ..decorators import permission_required
 from ..models import User, Permission, Role
 
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, ChangeRoleForm
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -63,3 +63,40 @@ def register():
 def users():
     all_users = User.query.all()
     return render_template('auth/users.html', users=all_users)
+
+
+@auth.route('/changeUserRole', methods=['GET', 'POST'])
+@login_required
+@permission_required(Permission.ADD_USERS)
+def change_user_role():
+    roles = Role.query.all()
+    form = ChangeRoleForm(roles)
+    user_id = int(request.args.get('userid'))
+    form.user_id = user_id
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(id=form.user_id).first()
+        role = Role.query.filter_by(name=form.user_role.data).first()
+        user.role = role
+        db.session.commit()
+        flash("User with new Role must logout and login again.")
+        return redirect(url_for('auth.users'))
+
+    user = User.query.get(user_id)
+    return render_template('auth/changeUserRole.html', user=user, form=form)
+
+
+@auth.route('/deleteUser', methods=['GET', 'POST'])
+@login_required
+@permission_required(Permission.ADD_USERS)
+def delete_user():
+    user_id = int(request.args.get('userid'))
+
+    if request.method == 'POST':
+        User.query.filter_by(id=user_id).delete()
+        db.session.commit()
+        flash("User deleted")
+        return redirect(url_for('auth.users'))
+
+    user = User.query.get(user_id)
+    return render_template('auth/deleteUser.html', user=user)

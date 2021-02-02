@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, HiddenField
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
 from wtforms import ValidationError
 
@@ -41,3 +41,16 @@ class RegistrationForm(FlaskForm):
         if User.query.filter_by(username=field.data).first():
             raise ValidationError('Username already in use.')
 
+
+class ChangeRoleForm(FlaskForm):
+    user_role = SelectField('Role', choices=None)
+    user_id = HiddenField('user_id')
+    submit = SubmitField('Change Role')
+
+    def __init__(self, roles):
+        super(ChangeRoleForm, self).__init__()
+        role_list = []
+        for r in roles:
+            role_list += [r.name]
+
+        self.user_role.choices = role_list
