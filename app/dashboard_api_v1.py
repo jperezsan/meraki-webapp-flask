@@ -69,26 +69,33 @@ def get_hubs(api_key, org_id, network_count):
     response = requests.request("GET", url, headers=headers, data=payload)
     response = json.loads(response.text)
 
-    for item in response:
-        if str(item['vpnMode']) == "hub":
-            temp = {"hubName": item["networkName"], "hubId": item["networkId"], "hubSerial": item["deviceSerial"]}
-            hubs.append(temp)
-    if number_of_pages == 1:
-        return hubs
-    else:
-        for i in range(1, number_of_pages):
-            # print(i)
-            last_device = response[-1]["networkId"]
-            # print(lastDevice)
-            url_ext = url = f"https://api.meraki.com/api/v1/organizations/{org_id}/appliance/vpn/statuses?startingAfter={last_device}"
-            response = requests.request("GET", url, headers=headers, data=payload)
-            response = json.loads(response.text)
-            for item in response:
-                if str(item['vpnMode']) == "hub":
-                    temp = {"hubName": item["networkName"], "hubId": item["networkId"],
-                            "hubSerial": item["deviceSerial"]}
-                    hubs.append(temp)
-        return hubs
+    try:
+
+        for item in response:
+            if str(item['vpnMode']) == "hub":
+                temp = {"hubName": item["networkName"], "hubId": item["networkId"], "hubSerial": item["deviceSerial"]}
+                hubs.append(temp)
+        if number_of_pages == 1:
+            return hubs
+        else:
+            for i in range(1, number_of_pages):
+                # print(i)
+                last_device = response[-1]["networkId"]
+                # print(lastDevice)
+                url_ext = url = f"https://api.meraki.com/api/v1/organizations/{org_id}/appliance/vpn/statuses?startingAfter={last_device}"
+                response = requests.request("GET", url, headers=headers, data=payload)
+                response = json.loads(response.text)
+                for item in response:
+                    if str(item['vpnMode']) == "hub":
+                        temp = {"hubName": item["networkName"], "hubId": item["networkId"],
+                                "hubSerial": item["deviceSerial"]}
+                        hubs.append(temp)
+            return hubs
+    except:
+        print("Error!")
+        print("Site-to-site VPN needs to be enabled for this organization")
+        print("Map Monitoring and DC Switchover modules will not work")
+        return None
 
     # This functions returns a list containing all the current tags of a given networkID
 

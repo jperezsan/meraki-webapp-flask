@@ -65,18 +65,19 @@ def get_hubs(apikey, organization_id, clean_networks):
 
 def get_clean_hubs(hubs):
     clean_hubs = []
-    for hub in hubs:
-        for key, value in hub.items():
-            if key == 'hubId':
-                hub_id = value
-            elif key == 'hubName':
-                hub_name = value
-            else:
-                continue
+    if hubs is not None:
+        for hub in hubs:
+            for key, value in hub.items():
+                if key == 'hubId':
+                    hub_id = value
+                elif key == 'hubName':
+                    hub_name = value
+                else:
+                    continue
 
-        clean_hubs.append([hub_id, hub_name])
-    clean_hubs.sort(key=lambda x: x[1])
-    clean_hubs.insert(0, [None, '* Choose...'])
+            clean_hubs.append([hub_id, hub_name])
+        clean_hubs.sort(key=lambda x: x[1])
+        clean_hubs.insert(0, [None, '* Choose...'])
     return clean_hubs
 
 
